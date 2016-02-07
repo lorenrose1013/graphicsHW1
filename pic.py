@@ -1,19 +1,19 @@
-SIZE = 100
+SIZE = 500
 r = g = b = 0
 
 img = "P3 " + str(SIZE) + " " + str(SIZE) + " 255 "
 
 for i in range( SIZE * SIZE ):
-	x = (i % SIZE) % (SIZE / 3)
-	y = (i / SIZE) % (SIZE / 3)
-	if ( (x**2) + (y**2) <= SIZE ):
-		r = 235 - x - y 
-		b = 113 - x - y 
-		g = 13
+	x = (i % SIZE)
+	y = (i / SIZE)
+	if ( (x**2) + (y**2) <= SIZE * SIZE):
+		r = ( r + 3 ) % 255
+		b = ( b + 3 ) % 255
+		g = ( b + 3 ) % 255
 	else:
 		r = 0 
-		g += x * y
-		b += (x + y)
+		g = 113 
+		b = 113
 	img += "%d %d %d " %(r, g, b)
 
 f = open("pic.ppm", "w")
